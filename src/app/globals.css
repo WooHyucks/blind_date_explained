@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+/* Typography: Noto Sans KR via @fontsource is imported in layout */
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --background: #fff5f5; /* very light pink */
+  --foreground: #222222; /* dark gray */
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
