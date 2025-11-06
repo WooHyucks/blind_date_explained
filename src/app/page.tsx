@@ -19,6 +19,7 @@ export default function Home() {
   const [scrollDepthTracked, setScrollDepthTracked] = useState(false);
   const [isInterestSubmitting, setIsInterestSubmitting] = useState(false);
   const [isInterestSubmitted, setIsInterestSubmitted] = useState(false);
+  const [isAmplitudeInitialized, setIsAmplitudeInitialized] = useState(false);
   const surveyProgressRef = useRef<number>(0);
 
   const fadeUp = {
@@ -52,42 +53,75 @@ export default function Home() {
 
   // Amplitude 이벤트 트래킹 헬퍼 (익명 사용자 ID 자동 포함)
   const trackEvent = useCallback((eventName: string, eventProperties?: Record<string, unknown>) => {
-    const apiKey = (process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY || "").trim();
-    if (apiKey && apiKey.length > 0) {
-      try {
-        const anonymousUserId = getOrCreateAnonymousUserId();
-        amplitude.track(eventName, {
+    // Amplitude가 초기화되지 않았으면 이벤트 전송하지 않음
+    if (!isAmplitudeInitialized) {
+      console.warn(`[Amplitude] 초기화되지 않아 이벤트를 전송할 수 없습니다: ${eventName}`);
+      return;
+    }
+
+    try {
+      const anonymousUserId = getOrCreateAnonymousUserId();
+      amplitude.track(eventName, {
+        ...eventProperties,
+        anonymous_user_id: anonymousUserId,
+      });
+      
+      // 개발 환경에서만 로그 출력
+      if (process.env.NODE_ENV === 'development') {
+        console.log(`[Amplitude] 이벤트 전송: ${eventName}`, {
           ...eventProperties,
           anonymous_user_id: anonymousUserId,
         });
-      } catch (error) {
-        console.warn(`Amplitude 이벤트 트래킹 실패 [${eventName}]:`, error);
+      } else {
+        // 프로덕션에서도 최소한의 로그 (디버깅용)
+        console.log(`[Amplitude] 이벤트 전송: ${eventName}`);
       }
+    } catch (error) {
+      console.error(`[Amplitude] 이벤트 트래킹 실패 [${eventName}]:`, error);
     }
-  }, []);
+  }, [isAmplitudeInitialized]);
 
   // Amplitude 초기화 및 페이지 뷰 이벤트
   useEffect(() => {
     // Amplitude API 키는 환경변수에서 가져오거나 하드코딩
-    const apiKey = (process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY || "").trim();
+    // Netlify 배포 시: Site settings > Environment variables에서 NEXT_PUBLIC_AMPLITUDE_API_KEY 설정
+    const apiKey = (
+      process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY || 
+      "989b3c5fc9b0d25901ccc67f14dfd90" // Fallback: Netlify 환경변수 미설정 시 사용
+    ).trim();
     
-    if (apiKey && apiKey.length > 0) {
-      try {
-        // Amplitude 초기화
-        amplitude.init(apiKey);
-        
-        // 익명 사용자 ID 생성 및 설정
-        const anonymousUserId = getOrCreateAnonymousUserId();
-        amplitude.setUserId(anonymousUserId);
-        
-        // 페이지 뷰 이벤트
-        trackEvent("view landing");
-        
-        console.log(`익명 사용자 ID: ${anonymousUserId}`);
-      } catch (error) {
-        console.warn("Amplitude 초기화 실패:", error);
-      }
+    if (!apiKey || apiKey.length === 0) {
+      console.error("[Amplitude] API 키가 설정되지 않았습니다.");
+      return;
     }
+
+    try {
+      // Amplitude 초기화
+      amplitude.init(apiKey, {
+        defaultTracking: {
+          pageViews: false, // 수동으로 페이지뷰 트래킹
+          sessions: true,
+          formInteractions: false,
+          fileDownloads: false,
+        },
+      });
+      
+      // 익명 사용자 ID 생성 및 설정
+      const anonymousUserId = getOrCreateAnonymousUserId();
+      amplitude.setUserId(anonymousUserId);
+      
+      // 초기화 완료 플래그 설정
+      setIsAmplitudeInitialized(true);
+      
+      console.log(`[Amplitude] 초기화 완료. 사용자 ID: ${anonymousUserId}`);
+      
+      // 페이지 뷰 이벤트
+      trackEvent("view landing");
+    } catch (error) {
+      console.error("[Amplitude] 초기화 실패:", error);
+      setIsAmplitudeInitialized(false);
+    }
+
 
     // 스크롤 뎁스 트래킹 (50%)
     const handleScroll = () => {
@@ -120,7 +154,7 @@ export default function Home() {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
-  }, [scrollDepthTracked, hasStartedSurvey, isSubmitted, trackEvent]);
+  }, [scrollDepthTracked, hasStartedSurvey, isSubmitted, trackEvent, isAmplitudeInitialized]);
 
   const onSubmitSurvey = async () => {
     // source는 UI에서 제거되었지만 나중을 위해 주석 처리
