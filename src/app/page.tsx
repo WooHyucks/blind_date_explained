@@ -454,7 +454,7 @@ export default function Home() {
             </div>
           </motion.div>
           
-          <div className="mx-auto mt-8 h-1 w-20 bg-gradient-to-r from-transparent via-[#FF6B6B] to-transparent rounded-full blur-sm" />
+          <div className="mx-auto mt-8 h-1 w-20" />
 
           <motion.div
             variants={stagger}
