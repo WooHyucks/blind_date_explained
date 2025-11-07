@@ -308,219 +308,84 @@ export default function Home() {
       {/* Container */}
       <div className="mx-auto max-w-3xl px-5 md:px-8">
         {/* 1) Hero Section */}
-        <section id="about" className="pt-28 md:pt-32 pb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-[#FFF5F5] via-[#FFE8E8] to-[#FFD9D9] p-10 md:p-16 shadow-lg border border-[#FFE8E8]/50"
-          >
-            {/* 배경 웨이브 패턴 */}
-            <div className="absolute inset-0 overflow-hidden">
-              <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#FF6B6B]/10 rounded-full blur-3xl"></div>
-              <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#FF9E9E]/10 rounded-full blur-3xl"></div>
-            </div>
-            
-            {/* 지하철 스크린도어 시각화 */}
-            <div className="relative max-w-2xl mx-auto z-10">
-              {/* 스크린도어 구조 */}
-              <div className="flex items-center justify-center gap-4 md:gap-6 my-8">
-                {/* 왼쪽 플랫폼 + 스크린도어 */}
-                <div className="flex-1 relative">
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    className="relative bg-white/70 backdrop-blur-md rounded-3xl p-8 md:p-10 shadow-xl border border-white/50"
-                  >
-                    {/* 글로우 효과 */}
-                    <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#FF6B6B]/20 to-transparent opacity-50"></div>
-                    {/* 실루엣 */}
-                    <div className="flex items-center justify-center h-28 md:h-36 relative z-10">
-                      <div className="relative">
-                        <div className="absolute inset-0 w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-[#FF6B6B]/30 to-[#FF9E9E]/30 blur-xl"></div>
-                        <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-[#FF6B6B]/40 via-[#FF9E9E]/30 to-[#FFD9D9]/20 flex items-center justify-center shadow-inner">
-                          <span className="text-3xl md:text-4xl">🙋🏻</span>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                  {/* 왼쪽 스크린도어 */}
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
-                    className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 flex flex-col items-center gap-1 z-20"
-                  >
-                    <div className="w-1.5 h-24 md:h-28 bg-gradient-to-b from-[#FF6B6B] via-[#FF9E9E] to-[#FFD9D9] rounded-full shadow-lg shadow-[#FF6B6B]/50"></div>
-                  </motion.div>
-                </div>
-                
-                {/* 중앙 열차 영역 */}
-                <div className="relative flex flex-col items-center gap-2 z-10">
-                  <div className="relative bg-gradient-to-b from-[#222]/10 via-[#222]/20 to-[#222]/10 rounded-lg px-4 md:px-6 py-8 md:py-10 border border-[#222]/20 shadow-lg w-full">
-                    {/* 왼쪽에서 오는 열차 */}
-                    <motion.div
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.8, delay: 0.6 }}
-                      className="absolute left-2 top-1/2 -translate-y-1/2 flex items-center gap-1 md:gap-2"
-                    >
+        <section id="about" className="pt-28 md:pt-32 pb-16">
 
-                    </motion.div>
-                    
-                    {/* 오른쪽에서 오는 열차 */}
-                    
-                    {/* 중앙 레일 */}
-                    <div className="h-px bg-[#222]/20 w-full"></div>
-
-                    
-                  </div>
-                  <div className="text-xs md:text-sm font-semibold text-[#666] whitespace-nowrap bg-white/60 rounded-full px-3 py-1 backdrop-blur-sm">
-                    열차
-                  </div>
-                </div>
-
-                <div className="relative flex flex-col items-center gap-2 z-10">
-
-                  <div className="relative bg-gradient-to-b from-[#222]/10 via-[#222]/20 to-[#222]/10 rounded-lg px-4 md:px-6 py-8 md:py-10 border border-[#222]/20 shadow-lg w-full">
-                    {/* 왼쪽에서 오는 열차 */}
-                    <motion.div
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.8, delay: 0.6 }}
-                      className="absolute left-2 top-1/2 -translate-y-1/2 flex items-center gap-1 md:gap-2"
-                    >
-
-
-                    </motion.div>
-                    
-                    {/* 오른쪽에서 오는 열차 */}
-                    
-                    {/* 중앙 레일 */}
-                    <div className="h-px bg-[#222]/20 w-full"></div>
-
-                    
-                  </div>
-                  <div className="text-xs md:text-sm font-semibold text-[#666] whitespace-nowrap bg-white/60 rounded-full px-3 py-1 backdrop-blur-sm">
-                    열차
-                  </div>
-                </div>
-                
-                
-                {/* 오른쪽 플랫폼 + 스크린도어 */}
-                <div className="flex-1 relative">
-                  {/* 오른쪽 스크린도어 */}
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
-                    className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 flex flex-col items-center gap-1 z-20"
-                  >
-                    <div className="w-1.5 h-24 md:h-28 bg-gradient-to-b from-[#FFD9D9] via-[#FF9E9E] to-[#FF6B6B] rounded-full shadow-lg shadow-[#FF6B6B]/50"></div>
-                  </motion.div>
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, delay: 0.3 }}
-                    className="relative bg-white/70 backdrop-blur-md rounded-3xl p-8 md:p-10 shadow-xl border border-white/50"
-                  >
-                    {/* 글로우 효과 */}
-                    <div className="absolute inset-0 rounded-3xl bg-gradient-to-bl from-[#FF6B6B]/20 to-transparent opacity-50"></div>
-                    {/* 실루엣 */}
-                    <div className="flex items-center justify-center h-28 md:h-36 relative z-10">
-                      <div className="relative">
-                        <div className="absolute inset-0 w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-[#FF6B6B]/30 to-[#FF9E9E]/30 blur-xl"></div>
-                        <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-[#FF6B6B]/40 via-[#FF9E9E]/30 to-[#FFD9D9]/20 flex items-center justify-center shadow-inner">
-                          <span className="text-3xl md:text-4xl">🙋🏻‍♀️</span>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                </div>
-              </div>
-              
-              {/* 문구 */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                className="text-center mt-8"
-              >
-                <p className="text-sm md:text-base text-[#666] font-medium bg-white/40 backdrop-blur-sm rounded-full px-4 py-2 inline-block">
-                  반대편에서 만나는 첫인상
-                </p>
-              </motion.div>
-            </div>
-          </motion.div>
           
-          <div className="mx-auto mt-8 h-1 w-20" />
 
           <motion.div
             variants={stagger}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-80px" }}
-            className=" text-center space-y-5"
+            className="text-center space-y-6 mt-10"
           >
-            {/* <motion.h1
+            <motion.h1
               variants={fadeUp}
-              className="text-2xl md:text-3xl font-semibold tracking-tight text-[#222]"
+              className="text-3xl md:text-4xl font-bold tracking-tight bg-gradient-to-r from-[#FF6B6B] to-[#FF9E9E] bg-clip-text text-transparent"
             >
-              소개팅이 열립니다✨
-            </motion.h1> */}
+              소개팅이 열립니다 ✨
+            </motion.h1>
             <motion.p
               variants={fadeUp}
-              className="text-sm md:text-base text-[#666] leading-relaxed font-medium"
+              className="text-base md:text-lg text-[#666] leading-relaxed font-semibold"
             >
               스크린도어가 열리면, 인연도 함께 열립니다.
             </motion.p>
             <motion.p
               variants={fadeUp}
-              className="text-base md:text-base text-[#444] leading-relaxed max-w-xl mx-auto font-medium"
+              className="text-base md:text-lg text-[#444] leading-relaxed max-w-2xl mx-auto font-medium"
             >
-              지하철 반대편 스크린도어에서, <span className="font-bold text-[#222]">첫인상으로만</span> 연결되는 새로운 소개팅 실험.
+              지하철 반대편 스크린도어에서, <span className="font-bold text-[#FF6B6B]">첫인상으로만</span> 연결되는 새로운 소개팅 실험.
               <br className="hidden md:block" />
-<span className="font-bold text-[#222]">눈빛 하나로</span> 인연이 열리는 순간을 상상해보세요.
+              <span className="font-bold text-[#FF6B6B]">눈빛 하나로</span> 인연이 열리는 순간을 상상해보세요.
             </motion.p>
-            <motion.p
+            <motion.div
               variants={fadeUp}
-              className="text-xs md:text-sm text-[#666] leading-relaxed max-w-xl mx-auto mt-4"
+              className="text-xs md:text-sm text-[#666] leading-relaxed max-w-2xl mx-auto mt-6 p-4 bg-white/50 backdrop-blur-sm rounded-xl border border-[#FFE8E8]/50"
             >
-              **완전 블라인드는 아니라서, 참여 전 기본 신상정보와 사진 1장을 확인해<br className="hidden md:inline" />
-              안전하고 신뢰할 수 있는 매칭을 위해 노력합니다.**
-            </motion.p>
+              <p className="font-medium">
+                <span className="text-[#FF6B6B] font-semibold">완전 블라인드는 아니라서</span>, 참여 전 기본 신상정보와 사진 1장을 확인해<br className="hidden md:inline" />
+                안전하고 신뢰할 수 있는 매칭을 위해 노력합니다.
+              </p>
+            </motion.div>
           </motion.div>
         </section>
 
-        {/* 2) Concept Section */}
-        <section className="pb-12  md:pb-14 ">
+        {/* 2) Concept Section - 개선 */}
+        <section className="pb-12 md:pb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7 }}
-            className="rounded-xl p-6 md:p-8 bg-white shadow-sm border border-[#FFE8E8]"
+            className="rounded-2xl p-8 md:p-10 bg-white shadow-xl border border-[#FFE8E8] hover:shadow-2xl transition-shadow duration-300"
           >
-            <h2 className="text-base md:text-xl font-semibold mb-5 text-[#222]">
-              첫인상은, 스크린을 넘어 현실에서 느껴야 하니까 🤔
+            <h2 className="text-lg md:text-2xl font-bold mb-6 text-[#222] flex items-center gap-2">
+              <span>🤔</span>
+              <span>첫인상은, 스크린을 넘어 현실에서 느껴야 하니까</span>
             </h2>
-            <div className="space-y-4 text-sm md:text-base leading-relaxed text-[#555]">
-              <p className="font-medium">
-                <span className="font-semibold text-[#222]">소개팅 앱의 사진과 실제는 다릅니다.</span>
-                <br />
-                우리는 많은 사람들이 첫인상에서 연인으로 발전할 가능성을 판단한다고 믿습니다.
-              </p>
-              <p className="pt-3 border-t font-medium border-[#FFE8E8]">
-                그런데 막상 만났을 때, 외모가 마음에 안 들어도 거절하기 쉽지 않죠.
-                <br />
-                <span className="font-semibold text-[#222]">서로 쓰고 싶지 않은 시간과 돈을 낭비하는 일</span>을 방지하고 싶습니다.
-              </p>
-              <p className="pt-3 text-[#FF6B6B] font-semibold">
-                지하철 스크린도어 앞에서, <span className="font-bold">10초의 첫인상</span>으로 결정하세요.
-                <br />
-                마음에 들면 타지 않고, 아니면 그냥 열차에 탑승하면 됩니다.
-              </p>
+            <div className="space-y-5 text-sm md:text-base leading-relaxed text-[#555]">
+              <div className="p-4 rounded-xl bg-[#FFF5F5]/50 border-l-4 border-[#FF6B6B]">
+                <p className="font-medium">
+                  <span className="font-bold text-[#222]">소개팅 앱의 사진과 실제는 다릅니다.</span>
+                  <br />
+                  우리는 많은 사람들이 첫인상에서 연인으로 발전할 가능성을 판단한다고 믿습니다.
+                </p>
+              </div>
+              <div className="p-4 rounded-xl bg-[#FFF5F5]/50 border-l-4 border-[#FF9E9E]">
+                <p className="pt-2 font-medium">
+                  그런데 막상 만났을 때, 외모가 마음에 안 들어도 거절하기 쉽지 않죠.
+                  <br />
+                  <span className="font-bold text-[#222]">서로 쓰고 싶지 않은 시간과 돈을 낭비하는 일</span>을 방지하고 싶습니다.
+                </p>
+              </div>
+              <div className="p-5 rounded-xl bg-gradient-to-r from-[#FF6B6B]/10 to-[#FF9E9E]/10 border-2 border-[#FF6B6B]/20">
+                <p className="text-[#FF6B6B] font-bold text-base md:text-lg">
+                  지하철 스크린도어 앞에서, <span className="text-[#222]">10초의 첫인상</span>으로 결정하세요.
+                  <br />
+                  마음에 들면 타지 않고, 아니면 그냥 열차에 탑승하면 됩니다.
+                </p>
+              </div>
             </div>
           </motion.div>
         </section>
@@ -672,7 +537,6 @@ export default function Home() {
                   </div>
                 </div>
 
-                
                 {/* 감정 폴 */}
                 <div>
                   <label className="block text-sm font-medium text-[#222] mb-3">
@@ -754,17 +618,29 @@ export default function Home() {
           )}
         </section>
 
-        {/* 4) Interest Form Section (CTA) */}
+        {/* 4) Interest Form Section (CTA) - 개선 */}
         <section id="signup" className="pb-10 md:pb-12">
           {isInterestSubmitted ? (
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="rounded-xl bg-gradient-to-r from-[#FF9E9E] to-[#FF6B6B] p-6 md:p-8 text-white shadow-sm text-center"
+              className="rounded-2xl bg-gradient-to-br from-[#FF6B6B] via-[#FF9E9E] to-[#FF6B6B] p-8 md:p-10 text-white shadow-2xl text-center border-4 border-white/20"
             >
-              <div className="text-4xl mb-4">✨</div>
-              <h3 className="text-lg md:text-xl font-semibold mb-2">
+              <motion.div
+                animate={{
+                  scale: [1, 1.1, 1],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="text-5xl mb-6"
+              >
+                ✨
+              </motion.div>
+              <h3 className="text-xl md:text-2xl font-bold mb-3">
                 알림 받기 설정이 완료되었습니다!
               </h3>
               <p className="text-sm md:text-base opacity-90">
@@ -777,42 +653,42 @@ export default function Home() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.8 }}
-              className="rounded-xl bg-gradient-to-r from-[#FF9E9E] to-[#FF6B6B] p-6 md:p-8 text-white shadow-sm"
+              className="rounded-2xl bg-gradient-to-br from-[#FF6B6B] via-[#FF9E9E] to-[#FF6B6B] p-8 md:p-10 text-white shadow-2xl border-4 border-white/20 hover:shadow-3xl transition-shadow duration-300"
             >
               <div className="text-center max-w-xl mx-auto">
-                <h3 className="text-lg md:text-xl font-semibold leading-relaxed">
-
+                <h3 className="text-xl md:text-2xl font-bold leading-relaxed mb-3">
+                  💌 첫 소식을 가장 먼저 받아보세요
                 </h3>
-                <p className="mt-2 text-sm md:text-base opacity-90 leading-relaxed">
-                  지금, &ldquo;소개팅이 열립니다&rdquo;의 첫 소식을 받아보세요.
+                <p className="mt-2 text-base md:text-lg opacity-95 leading-relaxed font-medium">
+                  지금, &ldquo;소개팅이 열립니다&rdquo;의 첫 실험 소식을 받아보세요.
                 </p>
 
-                <form onSubmit={onSubmit} className="mt-6 flex flex-col sm:flex-row gap-2.5">
+                <form onSubmit={onSubmit} className="mt-8 flex flex-col sm:flex-row gap-3">
                   <input
                     type="text"
                     placeholder="이메일 또는 카카오톡 ID 또는 인스타그램 ID"
                     value={emailOrId}
                     onChange={(e) => setEmailOrId(e.target.value)}
                     disabled={isInterestSubmitting}
-                    className="flex-1 rounded-full px-4 py-3 text-sm text-[#222] bg-white placeholder:text-[#999] border-2 border-white/80 focus:outline-none focus:border-white focus:ring-2 focus:ring-white/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex-1 rounded-full px-5 py-4 text-sm text-[#222] bg-white placeholder:text-[#999] border-2 border-white/80 focus:outline-none focus:border-white focus:ring-4 focus:ring-white/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
                   />
                   <motion.button
                     type="submit"
                     disabled={isInterestSubmitting}
-                    whileHover={isInterestSubmitting ? {} : { scale: 1.02 }}
-                    whileTap={isInterestSubmitting ? {} : { scale: 0.98 }}
-                    className="rounded-full bg-white text-[#FF6B6B] font-medium px-6 py-3 text-sm shadow-sm whitespace-nowrap border-2 border-white hover:bg-[#FFF5F5] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    whileHover={isInterestSubmitting ? {} : { scale: 1.05, y: -2 }}
+                    whileTap={isInterestSubmitting ? {} : { scale: 0.95 }}
+                    className="rounded-full bg-white text-[#FF6B6B] font-bold px-8 py-4 text-sm shadow-xl whitespace-nowrap border-2 border-white hover:bg-[#FFF5F5] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 hover:shadow-2xl"
                   >
                     {isInterestSubmitting ? (
                       <>
-                        <svg className="animate-spin h-4 w-4 text-[#FF6B6B]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <svg className="animate-spin h-5 w-5 text-[#FF6B6B]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                         </svg>
                         처리 중...
                       </>
                     ) : (
-                      "알림받기"
+                      "✨ 알림받기"
                     )}
                   </motion.button>
                 </form>
